@@ -1,4 +1,4 @@
-/* HOOAH site · build 2026-10-21 13:49 */
+/* HOOAH site · build 2026-10-21 13:54 */
 (function(){
   var CFG={"buy_url": "#buy", "ig_url": "https://instagram.com/drinkhooah", "nav_map": {"/products": "/#products", "/reset": "/#reset", "/origin": "/#origin", "/41": "https://instagram.com/drinkhooah"}, "product_urls": {"xager": "/shop_view/?idx=12", "xhale": "/shop_view/?idx=13", "xhope": "/shop_view/?idx=14"}};
   /* 1) 메뉴로 생긴 페이지(/products 등) → 홈 섹션으로 */
@@ -26,7 +26,7 @@
     document.querySelectorAll(".hooah .pack").forEach(function(g){ g.addEventListener("click",function(e){var b=e.target.closest("button[data-pack]"); if(b) HOOAH_setPack(g,b.dataset.pack);}); });
     document.querySelectorAll(".h-products .card .pack").forEach(function(g){ HOOAH_setPack(g,"6"); });
     /* 5) 제품 모달 */
-    
+    if(document.getElementById("h-modal")){ 
   var D={
     xager:{style:"Golden · Crisp",title:"XAGER",story:"Golden and crisp. Wide awake. Stay EAGER for what’s next.",breath:"X + EAGER: one breath out, and you’re ready for what’s next.",ing:"Water, malt, wheat malt, hops, yeast",body:60,bitter:40,finish:80,after:["After Work","Social Pause","Fried Comfort"],can:"https://jmino015-afk.github.io/hooah-site/img/card-xager.webp"},
     xhale:{style:"Ginger · Lime · Honey",title:"XHALE",story:"A bright balance of ginger, lime, and honey. EXHALE. Let the conversation flow.",breath:"EXHALE: let the breath out, let the conversation in.",ing:"Water, malt, wheat malt, hops, yeast, natural flavors (ginger, lime, honey)",body:55,bitter:45,finish:75,after:["After Run","Quiet Evening","Weekend Slowdown"],can:"https://jmino015-afk.github.io/hooah-site/img/card-xhale.webp"},
@@ -47,11 +47,66 @@
   m.querySelectorAll(".tabs button").forEach(function(b){b.addEventListener("click",function(){show(b.dataset.tab)})});
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!m.hidden) hide()});
   if(location.hash && D[location.hash.slice(1)]) show(location.hash.slice(1));
-
+ }
     /* 6) 스크롤 등장 효과 */
     var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches||location.search.indexOf("static")>-1;
     if(reduce){ document.documentElement.classList.add("hooah-no-motion"); }
     else { import("https://cdn.jsdelivr.net/npm/motion@11/+esm").then(function(M){ document.querySelectorAll(".hooah [data-reveal]").forEach(function(el){ M.inView(el,function(){ M.animate(el,{opacity:1,transform:"translateY(0)"},{duration:.8,easing:[.2,.8,.2,1]}); },{margin:"-10% 0px"}); }); }).catch(function(){ document.documentElement.classList.add("hooah-no-motion"); }); }
   });
-  window.HOOAH_BUILD="2026-10-21 13:49";
+  window.HOOAH_BUILD="2026-10-21 13:54";
+})();
+
+/* 아임웹 시스템 문구(상세페이지·장바구니 팝업 등) → 영문 표시. 편집(디자인 모드) 화면에서는 동작하지 않음 */
+(function(){
+  if(/[?&]mode=/.test(location.search) || window.self!==window.top) return;
+  var D={
+    "가격문의(상세정보 참조)":"NZD 36 (6 cans) · NZD 139 (24 cans)",
+    "기본 무료":"Free","택배":"Courier","배송":"Shipping","배송 방법":"Shipping method","배송비 결제":"Shipping fee",
+    "선결제":"Prepaid","착불":"Pay on delivery","방문수령":"Pickup","퀵 서비스":"Quick delivery",
+    "상품":"Product","원산지":"Origin","제조사":"Manufacturer","브랜드":"Brand","무게":"Weight","상품 이미지":"Product image",
+    "상세정보":"Details","구매평":"Reviews","상품문의":"Questions","1:1 문의":"Contact us",
+    "상세정보 펼쳐보기":"Show more","상세정보 접기":"Show less","더보기":"More",
+    "구매평 작성":"Write a review","포토 구매평만 보기":"Photo reviews only",
+    "등록된 구매평이 없습니다.":"No reviews yet.","등록된 문의가 없습니다":"No questions yet.",
+    "구매평은 구매자만 작성할 수 있고, 삭제 전까지 기간 제한 없이 게시돼요.":"Only customers who bought this product can write a review. Reviews stay up until they are deleted.",
+    "운영자가 뽑은 베스트 구매평은 배지와 함께 상단에, 워스트 구매평은 하단에 노출돼요.":"Reviews picked as best are badged and shown first; the lowest-rated are shown last.",
+    "별점은 5점 만점으로 표시돼요.":"Ratings are out of 5 stars.",
+    "삭제 기준과 이의제기 절차는 운영사 내부 규칙을 따라요.":"Removals and appeals follow our review policy.",
+    "구매하시려는 상품에 대해 궁금한 점이 있으면 문의주세요.":"Have a question about this product? Ask us here.",
+    "상품정보 제공고시":"Product information notice",
+    "제품명":"Product name","식품의 유형":"Food type","생산자 및 소재지":"Manufacturer & location",
+    "제조연월일, 유통기한 또는 소비기한 또는 품질유지기한":"Best before",
+    "포장단위별 내용물의 용량(중량), 수량":"Volume & quantity per pack",
+    "원재료명 (관계 법령에 따른 원산지 표시 포함) 및 함량":"Ingredients & country of origin",
+    "영양성분":"Nutrition","유전자변형식품에 해당하는 경우의 표시":"GMO labelling",
+    "소비자안전을 위한 주의사항":"Safety precautions",
+    "수입식품의 경우 “관계 법령에 따른 수입신고를 필함”의 문구":"Import declaration",
+    "소비자상담 관련 전화번호":"Customer service",
+    "<교환 및 반품 가능 기간>":"<Returns & exchanges>",
+    "- 계약내용에 관한 서면을 받은 날부터 7일. 다만, 그 서면을 받은 때보다 재화등의 공급이 늦게 이루어진 경우에는 재화등을 공급받거나 재화등의 공급이 시작된 날부터 7일":"- Within 7 days of receiving the written terms of purchase. If the goods arrive later than that, within 7 days of receiving the goods.",
+    "- 공급받은 상품 및 용역의 내용이 표시﹒광고의 내용과 다르거나 계약내용과 다르게 이행된 경우에는 그 재화등을 공급받은 날 부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일이내":"- If the goods differ from how they were described or advertised, or from what was agreed, within 3 months of receiving them, or within 30 days of when you found out or could have found out.",
+    "닫기":"Close","뒤로":"Back","계속쇼핑":"Continue shopping","장바구니":"Cart","장바구니로 이동":"Go to cart",
+    "선택하신 상품을 장바구니에 담았습니다.":"Added to your cart.","장바구니에 있는 상품과 같이 주문할까요?":"Order together with the items in your cart?",
+    "이 상품만 구매":"Buy this item only","모바일 옵션 숨기기":"Hide options",
+    "로그인":"Login","로그아웃":"Logout","마이페이지":"My page","로그인이 필요합니다.":"Please log in.","프로필 정보수정":"Edit profile",
+    "알림":"Notifications","알림 설정":"Notification settings","공지사항":"Notices","내 글 반응":"Activity","게시물 알림":"Post alerts",
+    "내가 작성한 게시물이나 댓글에 다른 사람이 댓글이나 답글을 작성하면 알려줍니다.":"Get notified when someone replies to your posts or comments.",
+    "사이트에서 보내는 중요한 공지를 실시간으로 알려줍니다.":"Get important notices from the site in real time.",
+    "우편번호":"Postcode","전화번호":"Phone","위치확인":"Find address","도시명 (City)":"City","도시군 (State/Province/Region)":"State / Province / Region",
+    "거리주소 (Street address, P.O box, company name, c/o)":"Street address, P.O. box, company name, c/o",
+    "건물명 (Apartment, suite, unit, building, floor, etc.)":"Apartment, suite, unit, building, floor, etc.",
+    "호스팅 제공자: (주)아임웹":"Hosted by imweb"
+  };
+  var RX=[[/^0원 이상 구매 시 무료배송$/,"Free shipping"],[/^([\d,]+)원 이상 구매 시 무료배송$/,"Free shipping on orders over KRW $1"],[/^대표자 이메일:\s*/,"Email: "]];
+  var KO=/[가-힣]/, ATTR=["placeholder","title","alt","aria-label"];
+  function tx(s){ var k=s.trim(); if(D[k]) return s.replace(k,D[k]); for(var i=0;i<RX.length;i++){ if(RX[i][0].test(k)) return s.replace(k,k.replace(RX[i][0],RX[i][1])); } return null; }
+  function run(root){
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null), n, t;
+    while((n=w.nextNode())){ if(!KO.test(n.nodeValue)) continue; var p=n.parentNode; if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName)) continue; t=tx(n.nodeValue); if(t!==null) n.nodeValue=t; }
+    if(root.querySelectorAll) root.querySelectorAll("[placeholder],[title],[alt],[aria-label]").forEach(function(el){ ATTR.forEach(function(a){ var v=el.getAttribute(a); if(v&&KO.test(v)){ var r=tx(v); if(r!==null) el.setAttribute(a,r); } }); });
+  }
+  var queued=false;
+  function go(){ queued=false; run(document.body); }
+  function start(){ go(); new MutationObserver(function(){ if(!queued){ queued=true; requestAnimationFrame(go); } }).observe(document.body,{childList:true,subtree:true,characterData:true}); }
+  if(document.readyState!=="loading") start(); else document.addEventListener("DOMContentLoaded",start);
 })();
