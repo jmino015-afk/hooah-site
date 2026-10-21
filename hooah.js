@@ -1,6 +1,6 @@
-/* HOOAH site · build 2026-10-21 15:10 */
+/* HOOAH site · build 2026-10-21 15:14 */
 (function(){
-  var CFG={"buy_url": "/shop", "ig_url": "https://instagram.com/drinkhooah", "nav_map": {"/products": "/#products", "/reset": "/#reset", "/origin": "/#origin", "/41": "https://instagram.com/drinkhooah"}, "product_urls": {"xager": "/shop_view/?idx=12", "xhale": "/shop_view/?idx=13", "xhope": "/shop_view/?idx=14"}, "legal_pages_ready": false, "show_account_links": false, "reset_notice": "preview"};
+  var CFG={"buy_url": "/shop", "ig_url": "https://instagram.com/drinkhooah", "nav_map": {"/products": "/#products", "/reset": "/#reset", "/origin": "/#origin", "/41": "https://instagram.com/drinkhooah"}, "product_urls": {"xager": "/shop_view/?idx=12", "xhale": "/shop_view/?idx=13", "xhope": "/shop_view/?idx=14"}, "legal_pages_ready": false, "show_account_links": false, "reset_notice": "on"};
   /* 1) 메뉴로 생긴 페이지(/products 등) → 홈 섹션으로 */
   var path=location.pathname.replace(/\/$/,"");
   if(CFG.nav_map[path]){ location.replace(CFG.nav_map[path]); return; }
@@ -60,7 +60,7 @@
     if(reduce){ document.documentElement.classList.add("hooah-no-motion"); }
     else { import("https://cdn.jsdelivr.net/npm/motion@11/+esm").then(function(M){ document.querySelectorAll(".hooah [data-reveal]").forEach(function(el){ M.inView(el,function(){ M.animate(el,{opacity:1,transform:"translateY(0)"},{duration:.8,easing:[.2,.8,.2,1]}); },{margin:"-10% 0px"}); }); }).catch(function(){ document.documentElement.classList.add("hooah-no-motion"); }); }
   });
-  window.HOOAH_BUILD="2026-10-21 15:10";
+  window.HOOAH_BUILD="2026-10-21 15:14";
 })();
 
 /* 아임웹 시스템 문구(상세페이지·장바구니 팝업 등) → 영문 표시. 편집(디자인 모드) 화면에서는 동작하지 않음 */
@@ -206,7 +206,7 @@
 /* 'Brand Reset in Progress' 안내: 가운데 고정 팝업(닫기 없음). 뒤 화면은 흐리게 가려져 클릭 불가, 스크롤만 가능
    mode: "off" | "preview"(주소에 ?reset-preview=1 일 때만) | "on"(모든 방문자) */
 (function(){
-  var MODE="preview";
+  var MODE="on";
   if(/[?&]mode=/.test(location.search) || window.self!==window.top) return;
   if(MODE==="off" || (MODE==="preview" && !/[?&]reset-preview=1/.test(location.search))) return;
   function show(){
