@@ -1,4 +1,4 @@
-/* HOOAH site · build 2026-10-21 15:05 */
+/* HOOAH site · build 2026-10-21 15:07 */
 (function(){
   var CFG={"buy_url": "/shop", "ig_url": "https://instagram.com/drinkhooah", "nav_map": {"/products": "/#products", "/reset": "/#reset", "/origin": "/#origin", "/41": "https://instagram.com/drinkhooah"}, "product_urls": {"xager": "/shop_view/?idx=12", "xhale": "/shop_view/?idx=13", "xhope": "/shop_view/?idx=14"}, "legal_pages_ready": false, "show_account_links": false, "reset_notice": "preview"};
   /* 1) 메뉴로 생긴 페이지(/products 등) → 홈 섹션으로 */
@@ -60,7 +60,7 @@
     if(reduce){ document.documentElement.classList.add("hooah-no-motion"); }
     else { import("https://cdn.jsdelivr.net/npm/motion@11/+esm").then(function(M){ document.querySelectorAll(".hooah [data-reveal]").forEach(function(el){ M.inView(el,function(){ M.animate(el,{opacity:1,transform:"translateY(0)"},{duration:.8,easing:[.2,.8,.2,1]}); },{margin:"-10% 0px"}); }); }).catch(function(){ document.documentElement.classList.add("hooah-no-motion"); }); }
   });
-  window.HOOAH_BUILD="2026-10-21 15:05";
+  window.HOOAH_BUILD="2026-10-21 15:07";
 })();
 
 /* 아임웹 시스템 문구(상세페이지·장바구니 팝업 등) → 영문 표시. 편집(디자인 모드) 화면에서는 동작하지 않음 */
@@ -120,6 +120,7 @@
     while((n=w.nextNode())){ if(!KO.test(n.nodeValue)) continue; var p=n.parentNode; if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName)) continue; t=tx(n.nodeValue); if(t!==null) n.nodeValue=t; }
     if(root.querySelectorAll) root.querySelectorAll("[placeholder],[title],[alt],[aria-label]").forEach(function(el){ ATTR.forEach(function(a){ var v=el.getAttribute(a); if(v&&KO.test(v)){ var r=tx(v); if(r!==null) el.setAttribute(a,r); } }); });
   }
+  window.HOOAH_i18n=function(){ run(document.body); };
   var queued=false;
   function go(){ queued=false; run(document.body); }
   function start(){ go(); new MutationObserver(function(){ if(!queued){ queued=true; requestAnimationFrame(go); } }).observe(document.body,{childList:true,subtree:true,characterData:true}); }
@@ -219,4 +220,4 @@
   if(document.body) show(); else document.addEventListener("DOMContentLoaded",show);
 })();
 
-(function(){function r(){requestAnimationFrame(function(){document.documentElement.classList.remove("hooah-wait")});} if(document.readyState!=="loading") r(); else document.addEventListener("DOMContentLoaded",r);})();
+(function(){var d=document.documentElement;function r(){ if(window.HOOAH_i18n) window.HOOAH_i18n(); requestAnimationFrame(function(){d.classList.remove("hooah-wait")}); } if(document.readyState==="complete") r(); else window.addEventListener("load",function(){ setTimeout(r,60); });})();
