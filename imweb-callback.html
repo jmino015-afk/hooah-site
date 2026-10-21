@@ -7,7 +7,7 @@ button{font:600 15px sans-serif;padding:12px 22px;border-radius:999px;border:1.5
 <script>
 (function(){
   var CLIENT_ID="__CLIENT_ID__";
-  var SCOPE="site-info:write product:write order:read script:write analytics:read";
+  var SCOPE="site-info:write product:write order:read script:write";
   var here=location.origin+location.pathname, q=new URLSearchParams(location.search), box=document.getElementById("box");
   function show(t,html){ box.innerHTML="<h1>"+t+"</h1>"+html; }
   if(q.get("code")){

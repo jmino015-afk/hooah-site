@@ -1,4 +1,4 @@
-/* HOOAH site · build 2026-10-21 11:58 */
+/* HOOAH site · build 2026-10-21 12:04 */
 (function(){
   var CFG={"buy_url": "#buy", "ig_url": "https://instagram.com/drinkhooah", "nav_map": {"/products": "/#products", "/reset": "/#reset", "/origin": "/#origin", "/41": "https://instagram.com/drinkhooah"}};
   /* 1) 메뉴로 생긴 페이지(/products 등) → 홈 섹션으로 */
@@ -45,5 +45,5 @@
     if(reduce){ document.documentElement.classList.add("hooah-no-motion"); }
     else { import("https://cdn.jsdelivr.net/npm/motion@11/+esm").then(function(M){ document.querySelectorAll(".hooah [data-reveal]").forEach(function(el){ M.inView(el,function(){ M.animate(el,{opacity:1,transform:"translateY(0)"},{duration:.8,easing:[.2,.8,.2,1]}); },{margin:"-10% 0px"}); }); }).catch(function(){ document.documentElement.classList.add("hooah-no-motion"); }); }
   });
-  window.HOOAH_BUILD="2026-10-21 11:58";
+  window.HOOAH_BUILD="2026-10-21 12:04";
 })();
