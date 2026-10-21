@@ -1,4 +1,4 @@
-/* HOOAH site · build 2026-10-21 13:54 */
+/* HOOAH site · build 2026-10-21 13:57 */
 (function(){
   var CFG={"buy_url": "#buy", "ig_url": "https://instagram.com/drinkhooah", "nav_map": {"/products": "/#products", "/reset": "/#reset", "/origin": "/#origin", "/41": "https://instagram.com/drinkhooah"}, "product_urls": {"xager": "/shop_view/?idx=12", "xhale": "/shop_view/?idx=13", "xhope": "/shop_view/?idx=14"}};
   /* 1) 메뉴로 생긴 페이지(/products 등) → 홈 섹션으로 */
@@ -53,7 +53,7 @@
     if(reduce){ document.documentElement.classList.add("hooah-no-motion"); }
     else { import("https://cdn.jsdelivr.net/npm/motion@11/+esm").then(function(M){ document.querySelectorAll(".hooah [data-reveal]").forEach(function(el){ M.inView(el,function(){ M.animate(el,{opacity:1,transform:"translateY(0)"},{duration:.8,easing:[.2,.8,.2,1]}); },{margin:"-10% 0px"}); }); }).catch(function(){ document.documentElement.classList.add("hooah-no-motion"); }); }
   });
-  window.HOOAH_BUILD="2026-10-21 13:54";
+  window.HOOAH_BUILD="2026-10-21 13:57";
 })();
 
 /* 아임웹 시스템 문구(상세페이지·장바구니 팝업 등) → 영문 표시. 편집(디자인 모드) 화면에서는 동작하지 않음 */
@@ -95,9 +95,15 @@
     "우편번호":"Postcode","전화번호":"Phone","위치확인":"Find address","도시명 (City)":"City","도시군 (State/Province/Region)":"State / Province / Region",
     "거리주소 (Street address, P.O box, company name, c/o)":"Street address, P.O. box, company name, c/o",
     "건물명 (Apartment, suite, unit, building, floor, etc.)":"Apartment, suite, unit, building, floor, etc.",
+    "작성":"Submit","취소":"Cancel","이미지 첨부":"Attach image","링크 삽입":"Insert link",
+    "개인정보(휴대폰번호, 계좌번호 등)는 입력하지 않도록 주의해주세요.":"Please do not enter personal information (phone or bank account numbers).",
+    "굵게":"Bold","기울임꼴":"Italic","밑줄":"Underline","취소선":"Strikethrough","서식 제거":"Clear formatting","글꼴 크기":"Font size","텍스트 색상":"Text colour",
+    "정렬":"Align","왼쪽정렬":"Align left","가운데정렬":"Align centre","오른쪽정렬":"Align right","양쪽정렬":"Justify",
+    "숫자 리스트":"Numbered list","점 리스트":"Bulleted list","기본":"Default","원":"Circle","네모":"Square","디스크":"Disc",
+    "대문자 로마자":"Upper Roman","소문자 로마자":"Lower Roman","대문자 알파벳":"Upper alpha","소문자 알파벳":"Lower alpha","소문자 그리스어":"Lower Greek",
     "호스팅 제공자: (주)아임웹":"Hosted by imweb"
   };
-  var RX=[[/^0원 이상 구매 시 무료배송$/,"Free shipping"],[/^([\d,]+)원 이상 구매 시 무료배송$/,"Free shipping on orders over KRW $1"],[/^대표자 이메일:\s*/,"Email: "]];
+  var RX=[[/^0원 이상 구매 시 무료배송$/,"Free shipping"],[/^([\d,]+)원 이상 구매 시 무료배송$/,"Free shipping on orders over KRW $1"],[/^대표자 이메일:\s*/,"Email: "],[/^문자\s*:\s*(\d+)$/,"Characters: $1"]];
   var KO=/[가-힣]/, ATTR=["placeholder","title","alt","aria-label"];
   function tx(s){ var k=s.trim(); if(D[k]) return s.replace(k,D[k]); for(var i=0;i<RX.length;i++){ if(RX[i][0].test(k)) return s.replace(k,k.replace(RX[i][0],RX[i][1])); } return null; }
   function run(root){
