@@ -1,0 +1,30 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>HOOAH · imweb 연결</title>
+<style>body{font-family:-apple-system,Pretendard,sans-serif;background:#FEF4EA;color:#111;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0}
+.box{max-width:520px;padding:32px;text-align:center}h1{font-size:22px}code{display:block;font-size:22px;font-weight:700;background:#fff;border:1.5px solid #111;border-radius:10px;padding:16px;margin:18px 0;word-break:break-all}
+button{font:600 15px sans-serif;padding:12px 22px;border-radius:999px;border:1.5px solid #111;background:#111;color:#FEF4EA;cursor:pointer}p{color:#555;line-height:1.6}</style></head>
+<body><div class="box" id="box"><h1>HOOAH · 아임웹 API 연결</h1><p>잠시만요…</p></div>
+<script>
+(function(){
+  var CLIENT_ID="__CLIENT_ID__";
+  var SCOPE="site-info:write product:write order:read script:write analytics:read";
+  var here=location.origin+location.pathname, q=new URLSearchParams(location.search), box=document.getElementById("box");
+  function show(t,html){ box.innerHTML="<h1>"+t+"</h1>"+html; }
+  if(q.get("code")){
+    var site=q.get("siteCode")||sessionStorage.getItem("hooah_site")||"";
+    var payload=q.get("code")+(site?" "+site:"");
+    show("연결 코드가 발급됐어요","<p>아래 코드를 복사해서 Claude에게 보내주세요. 몇 분 안에 만료되고 한 번만 쓸 수 있어요.</p><code id='c'>"+payload+"</code><button onclick=\"navigator.clipboard.writeText(document.getElementById('c').innerText);this.innerText='복사됨'\">복사</button>");
+    return;
+  }
+  if(q.get("errorCode")||q.get("error")){ show("연결이 취소되었거나 실패했어요","<p>"+(q.get("message")||q.get("error")||q.get("errorCode"))+"</p>"); return; }
+  var siteCode=q.get("siteCode");
+  if(siteCode){
+    if(CLIENT_ID.indexOf("__")===0){ show("설정 대기 중","<p>Client ID가 아직 등록되지 않았어요. Claude에게 알려주세요.</p>"); return; }
+    sessionStorage.setItem("hooah_site",siteCode);
+    var st=Math.random().toString(36).slice(2); sessionStorage.setItem("hooah_state",st);
+    location.replace("https://openapi.imweb.me/oauth2/authorize?"+new URLSearchParams({responseType:"code",clientId:CLIENT_ID,redirectUri:here,scope:SCOPE,state:st,siteCode:siteCode}).toString());
+    return;
+  }
+  show("HOOAH · 아임웹 API 연결","<p>이 페이지는 아임웹 개발자센터의 <b>앱 테스트</b>에서 열려야 해요.</p>");
+})();
+</script></body></html>
