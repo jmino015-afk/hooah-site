@@ -1,4 +1,4 @@
-/* HOOAH site · build 2026-10-21 14:48 */
+/* HOOAH site · build 2026-10-21 14:53 */
 (function(){
   var CFG={"buy_url": "/shop", "ig_url": "https://instagram.com/drinkhooah", "nav_map": {"/products": "/#products", "/reset": "/#reset", "/origin": "/#origin", "/41": "https://instagram.com/drinkhooah"}, "product_urls": {"xager": "/shop_view/?idx=12", "xhale": "/shop_view/?idx=13", "xhope": "/shop_view/?idx=14"}, "legal_pages_ready": false, "show_account_links": false};
   /* 1) 메뉴로 생긴 페이지(/products 등) → 홈 섹션으로 */
@@ -22,7 +22,7 @@
     window.HOOAH_scrollTo=function(t,smooth){ var off=function(){ var n=document.querySelector(".h-topnav"); return (n?n.offsetHeight:0)+12; };
       var go=function(b){ window.scrollTo({top:Math.max(0,t.getBoundingClientRect().top+window.scrollY-off()),behavior:b}); };
       go(smooth===false?"auto":"smooth"); setTimeout(function(){ if(Math.abs(t.getBoundingClientRect().top-off())>4) go("auto"); },900); };
-    document.addEventListener("click",function(e){var a=e.target.closest('a[href^="/#"],a[href^="#"]'); if(!a) return; var id=a.getAttribute("href").split("#")[1]; var t=id&&document.getElementById(id); if(!t) return; e.preventDefault(); var inSlide=a.closest("#mobile_slide_menu,#pc_slide_menu"); if(inSlide){ try{ var cb=document.querySelector("#mobile_slide_menu_wrap .slide-close, #pc_slide_menu .pc-navbar-toggle"); if(cb) cb.click(); }catch(x){} } setTimeout(function(){ window.HOOAH_scrollTo(t); }, inSlide?350:0); history.replaceState(null,"","#"+id); });
+    document.addEventListener("click",function(e){var a=e.target.closest('a[href^="/#"],a[href^="#"]'); if(!a) return; var id=a.getAttribute("href").split("#")[1]; var t=id&&document.getElementById(id); if(!t) return; e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation) e.stopImmediatePropagation(); var inSlide=a.closest("#mobile_slide_menu,#pc_slide_menu"); if(inSlide){ try{ var cb=document.querySelector("#mobile_slide_menu_wrap .slide-close, #pc_slide_menu .pc-navbar-toggle"); if(cb) cb.click(); }catch(x){} } setTimeout(function(){ window.HOOAH_scrollTo(t); }, inSlide?350:0); history.replaceState(null,"","#"+id); }, true);   /* 캡처 단계: 아임웹 자체 앵커 스크롤보다 먼저 처리하고 막음 */
     if(location.hash){ var t0=document.getElementById(location.hash.slice(1)); if(t0) setTimeout(function(){ window.HOOAH_scrollTo(t0,false); },300); }
     /* 4-1) 6캔/24캔 선택: 버튼 문구 변경, 상품 페이지가 있으면 그 주소로 */
     window.HOOAH_setPack=function(group,pack){ if(!group) return; group.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.dataset.pack===String(pack));});
@@ -60,7 +60,7 @@
     if(reduce){ document.documentElement.classList.add("hooah-no-motion"); }
     else { import("https://cdn.jsdelivr.net/npm/motion@11/+esm").then(function(M){ document.querySelectorAll(".hooah [data-reveal]").forEach(function(el){ M.inView(el,function(){ M.animate(el,{opacity:1,transform:"translateY(0)"},{duration:.8,easing:[.2,.8,.2,1]}); },{margin:"-10% 0px"}); }); }).catch(function(){ document.documentElement.classList.add("hooah-no-motion"); }); }
   });
-  window.HOOAH_BUILD="2026-10-21 14:48";
+  window.HOOAH_BUILD="2026-10-21 14:53";
 })();
 
 /* 아임웹 시스템 문구(상세페이지·장바구니 팝업 등) → 영문 표시. 편집(디자인 모드) 화면에서는 동작하지 않음 */
