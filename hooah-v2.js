@@ -1,4 +1,4 @@
-/* HOOAH site v2 · build 2026-10-28 17:04 */
+/* HOOAH site v2 · build 2026-10-28 17:09 */
 /* HOOAH v2: 상단 메뉴(GNB·CLUB HOOAH 패널·모바일 메뉴) + 공통 푸터 + 페이지별 본문. hooah.js가 imweb.me 접속일 때 불러옴 */
 (function(){
   var d=document.documentElement;
@@ -188,6 +188,6 @@
     var h=location.hash&&document.getElementById(location.hash.slice(1));
     if(h){ var go=function(){ scrollTo(0,h.getBoundingClientRect().top+scrollY-document.getElementById("hv-gnb").offsetHeight); }; setTimeout(go,300); setTimeout(go,1000); }   /* /CLUBHOOAH#affiliate 등: 그린 뒤에 이동 */
   }
-  window.HOOAH_V2_BUILD="2026-10-28 17:04";
+  window.HOOAH_V2_BUILD="2026-10-28 17:09";
   if(document.readyState!=="loading") render(); else document.addEventListener("DOMContentLoaded",render);
 })();
