@@ -1,10 +1,10 @@
-/* HOOAH site v2 · build 2026-10-28 16:02 */
+/* HOOAH site v2 · build 2026-10-28 16:04 */
 /* HOOAH v2: 상단 메뉴(GNB·CLUB HOOAH 패널·모바일 메뉴) + 공통 푸터 + 페이지별 본문. hooah.js가 imweb.me 접속일 때 불러옴 */
 (function(){
   var d=document.documentElement;
   function reveal(){ requestAnimationFrame(function(){ d.classList.remove("hooah-wait"); }); }
   if(/[?&]mode=/.test(location.search) || window.self!==window.top){ reveal(); return; }   /* 아임웹 편집 화면에서는 아무것도 안 함 */
-  var CFG={"img": "https://jmino015-afk.github.io/hooah-site/img/", "nav": [["SHOP", "/shop"], ["CLUB HOOAH", ""], ["ABOUT US", "/AboutUS"]], "shop_tabs": [["전체보기", "/shop", "/shopall"], ["논알콜 음료", "/NAB", "/NAB"], ["브랜드 굿즈", "/BrandGoods", "/BrandGoods"]], "club": {"label": "CLUB HOOAH", "headline": "리셋을 나의 리추얼로.", "cards": [["Membership", "HOOAH RESETTER", "/CLUBHOOAH#membership", "hero-remarkables-desktop.jpg"], ["Affiliate", "Share the Reset", "/CLUBHOOAH#affiliate", "lineup.webp"]], "page": "/CLUBHOOAH"}, "footer_menu": [["전체보기", "/shop"], ["논알콜 음료", "/NAB"], ["브랜드 굿즈", "/BrandGoods"], ["CLUB HOOAH", "/CLUBHOOAH"], ["ABOUT US", "/AboutUS"]], "account_url": "/login?back_url=L3Nob3BfbXlwYWdl&type=mypage", "cart_url": "/shop_cart", "sns": {"tiktok": "", "instagram": "https://instagram.com/drinkhooah", "youtube": ""}, "support": [["자주 묻는 질문", "/faq"], ["고객 문의", "/contact"], ["배송 안내", "/shipping"], ["이용약관", "/terms"], ["개인정보처리방침", "/privacy"]], "support_ready": false, "newsletter": {"headline": "STAY IN THE RESET", "sub": "새로운 리셋 소식을 가장 먼저 받아보세요. 가입하면 첫 주문 [혜택]을 드려요.", "placeholder": "이메일 주소를 입력해 주세요", "ready": false}, "nonalc_badge": "알코올 1% 미만 함유", "analytics": {"ga4_id": "", "meta_pixel_id": "", "_note": "론칭 단계에서 ID를 넣으면 자동으로 켜짐. UTM 규칙은 docs/utm-rules.md"}}, IMG=CFG.img;
+  var CFG={"img": "https://jmino015-afk.github.io/hooah-site/img/", "nav": [["SHOP", "/shop"], ["CLUB HOOAH", ""], ["ABOUT US", "/About"]], "shop_tabs": [["전체보기", "/shop", "/shopall"], ["논알콜 음료", "/NAB", "/NAB"], ["브랜드 굿즈", "/BrandGoods", "/BrandGoods"]], "club": {"label": "CLUB HOOAH", "headline": "리셋을 나의 리추얼로.", "cards": [["Membership", "HOOAH RESETTER", "/CLUBHOOAH#membership", "hero-remarkables-desktop.jpg"], ["Affiliate", "Share the Reset", "/CLUBHOOAH#affiliate", "lineup.webp"]], "page": "/CLUBHOOAH"}, "footer_menu": [["전체보기", "/shop"], ["논알콜 음료", "/NAB"], ["브랜드 굿즈", "/BrandGoods"], ["CLUB HOOAH", "/CLUBHOOAH"], ["ABOUT US", "/About"]], "account_url": "/login?back_url=L3Nob3BfbXlwYWdl&type=mypage", "cart_url": "/shop_cart", "sns": {"tiktok": "", "instagram": "https://instagram.com/drinkhooah", "youtube": ""}, "support": [["자주 묻는 질문", "/faq"], ["고객 문의", "/contact"], ["배송 안내", "/shipping"], ["이용약관", "/terms"], ["개인정보처리방침", "/privacy"]], "support_ready": false, "newsletter": {"headline": "STAY IN THE RESET", "sub": "새로운 리셋 소식을 가장 먼저 받아보세요. 가입하면 첫 주문 [혜택]을 드려요.", "placeholder": "이메일 주소를 입력해 주세요", "ready": false}, "nonalc_badge": "알코올 1% 미만 함유", "analytics": {"ga4_id": "", "meta_pixel_id": "", "_note": "론칭 단계에서 ID를 넣으면 자동으로 켜짐. UTM 규칙은 docs/utm-rules.md"}}, IMG=CFG.img;
   d.classList.add("hooah-v2");
   if(!document.getElementById("hooah-v2-css")){
     var f=document.createElement("link"); f.rel="stylesheet"; f.href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"; document.head.appendChild(f);
@@ -68,7 +68,7 @@
     "/shopall":["shop","Shop All","논알콜 음료와 브랜드 굿즈를 한곳에서 볼 수 있어요."],
     "/NAB":["shop","Our Beers","XAGER, XHALE, XHOPE. 세 가지 맛의 논알콜 리셋 맥주예요. (W3에 상품 카드가 들어가요)"],
     "/BrandGoods":["shop","Our Goods","캔 오프너, 비어 글라스, 비어 코스터. 마시는 순간을 완성하는 작은 것들. (W6에 상품 카드가 들어가요)"],
-    "/AboutUS":["page","About Us","Not a substitute. A new reason to drink. (W6에 브랜드 이야기가 들어가요)"]
+    "/About":["page","About Us","Not a substitute. A new reason to drink. (W6에 브랜드 이야기가 들어가요)"]
   };
   function bodyHTML(){
     if(path==="/"||path==="/main")
@@ -127,6 +127,6 @@
     var h=location.hash&&document.getElementById(location.hash.slice(1));
     if(h){ var go=function(){ scrollTo(0,h.getBoundingClientRect().top+scrollY-document.getElementById("hv-gnb").offsetHeight); }; setTimeout(go,300); setTimeout(go,1000); }   /* /CLUBHOOAH#affiliate 등: 그린 뒤에 이동 */
   }
-  window.HOOAH_V2_BUILD="2026-10-28 16:02";
+  window.HOOAH_V2_BUILD="2026-10-28 16:04";
   if(document.readyState!=="loading") render(); else document.addEventListener("DOMContentLoaded",render);
 })();
