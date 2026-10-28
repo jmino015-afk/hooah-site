@@ -1,4 +1,4 @@
-/* HOOAH site · build 2026-10-28 16:06 */
+/* HOOAH site · build 2026-10-28 16:10 */
 (function(){
   var H=["drinkhooah.imweb.me"], onV2Host=H.indexOf(location.hostname)>-1, v=window.HOOAH_FORCE_VER||null;
   if(!v && onV2Host){ try{ var m=location.search.match(/[?&]ver=(1|2|auto)\b/); if(m){ if(m[1]==="auto") sessionStorage.removeItem("hooahVer"); else sessionStorage.setItem("hooahVer",m[1]); } v=sessionStorage.getItem("hooahVer"); }catch(x){} if(!v) v="2"; }
@@ -74,7 +74,7 @@ if(!window.HOOAH_V2){
     if(reduce){ document.documentElement.classList.add("hooah-no-motion"); }
     else { import("https://cdn.jsdelivr.net/npm/motion@11/+esm").then(function(M){ document.querySelectorAll(".hooah [data-reveal]").forEach(function(el){ M.inView(el,function(){ M.animate(el,{opacity:1,transform:"translateY(0)"},{duration:.8,easing:[.2,.8,.2,1]}); },{margin:"-10% 0px"}); }); }).catch(function(){ document.documentElement.classList.add("hooah-no-motion"); }); }
   });
-  window.HOOAH_BUILD="2026-10-28 16:06";
+  window.HOOAH_BUILD="2026-10-28 16:10";
 })();
 
 /* 아임웹 시스템 문구(상세페이지·장바구니 팝업 등) → 영문 표시. 편집(디자인 모드) 화면에서는 동작하지 않음 */
