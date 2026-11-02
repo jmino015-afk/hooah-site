@@ -1,4 +1,4 @@
-/* HOOAH site v2 · build 2026-11-02 14:48 */
+/* HOOAH site v2 · build 2026-11-02 14:49 */
 /* HOOAH v2: 상단 메뉴(GNB·CLUB HOOAH 패널·모바일 메뉴) + 공통 푸터 + 페이지별 본문. hooah.js가 imweb.me 접속일 때 불러옴 */
 (function(){
   var d=document.documentElement;
@@ -245,7 +245,7 @@
       var b=e.target.closest(".pcard .opt button"); if(!b) return; var card=b.closest(".pcard"), pr=JSON.parse(card.dataset.prices||"{}");
       card.querySelectorAll(".opt button").forEach(function(x){ x.setAttribute("aria-pressed",x===b?"true":"false"); });
       card.querySelector(".price").textContent=won(pr[b.dataset.pack]);
-      var im=JSON.parse(card.dataset.imgs||"{}"), m=card.querySelector(".ph img.main"); if(im[b.dataset.pack]&&m) m.src=IMG+im[b.dataset.pack]; });
+      var im=JSON.parse(card.dataset.imgs||"{}"), m=card.querySelector(".ph img.main"); if(m && (im[b.dataset.pack]||Object.keys(im).some(function(k){ return im[k]; }))) m.src=IMG+(im[b.dataset.pack]||card.dataset.base); });   /* 박스 이미지가 없는 옵션은 캔 사진으로 */
     var onScroll=function(){ g.classList.toggle("scrolled",scrollY>4); }; addEventListener("scroll",onScroll,{passive:true}); onScroll();
     addEventListener("pageshow",function(e){ if(e.persisted){ setM(false); setPanel(null); } });
     document.querySelectorAll("[data-imweb-dialog]").forEach(function(a){ a.addEventListener("click",function(e){   /* 아임웹 기본 약관 창 (관리자 약관 설정의 내용) */
@@ -274,6 +274,6 @@
     var h=location.hash&&document.getElementById(location.hash.slice(1));
     if(h){ var go=function(){ scrollTo(0,h.getBoundingClientRect().top+scrollY-document.getElementById("hv-gnb").offsetHeight); }; setTimeout(go,300); setTimeout(go,1000); }   /* /CLUBHOOAH#affiliate 등: 그린 뒤에 이동 */
   }
-  window.HOOAH_V2_BUILD="2026-11-02 14:48";
+  window.HOOAH_V2_BUILD="2026-11-02 14:49";
   if(document.readyState!=="loading") render(); else document.addEventListener("DOMContentLoaded",render);
 })();
